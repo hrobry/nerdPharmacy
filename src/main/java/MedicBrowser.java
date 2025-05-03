@@ -24,11 +24,7 @@ public class MedicBrowser {
                     "root",
                     "123"
             );
-            // Utworzenie tabeli, jeśli nie istnieje
-            //  String sql = "CREATE TABLE accounts (username VARCHAR(50) PRIMARY KEY, password VARCHAR(255))";
-            //  Statement stmt = conn.createStatement();
-            // stmt.executeUpdate(sql);
-            /// stmt.close();
+
         } catch (Exception e) {
             System.out.println("Błąd połączenia z bazą danych: " + e.getMessage());
         }

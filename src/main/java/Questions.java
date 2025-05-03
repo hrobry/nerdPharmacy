@@ -32,20 +32,6 @@ public class Questions {
 
 
 
-/*  Do usunięcia przyed last review
-        // Dodawanie przykładowych leków do listy.
-        medicines.add(new Medicine(1, "Paracetamol", 9.99));
-        medicines.add(new Medicine(2, "Ibuprofen", 14.99));
-        medicines.add(new Medicine(3, "Aspirin", 12.99));
-        medicines.add(new Medicine(4, "Antybiotyk", 29.99));
-
-     // ***************************************************************** `
-        // Element 6: Streamy i Lambdy – przykład filtrowania leków
-        System.out.println("Leki droższe niż 10 PLN:");
-        medicines.stream()
-                .filter(m -> m.getPrice() > 10) // Lambda: filtruje leki o cenie > 10 PLN
-                .forEach(System.out::println);
-*/
 
 
 
