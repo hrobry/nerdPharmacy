@@ -22,6 +22,7 @@ class DataFetcher {
             case "Apap":
                 pharmaURL= "//*[@id=\"content\"]/div[2]/table/tbody/tr[1]/td[6]/text()";
                 url = "https://www.lekinfo24.pl/lek/Apap-migrena.html";
+                System.out.println("Apap");
                 break;
             case "Paracetamol":
                 pharmaURL= "//*[@id=\"content\"]/div[2]/table/tbody/tr[1]/td[6]/text()";
@@ -52,6 +53,7 @@ class DataFetcher {
 
             // Rzutowanie wyniku na HtmlSpan Apap
             DomText priceElement = (DomText) page.getFirstByXPath(pharmaURL);
+            System.out.println(priceElement);
             String price="";
 
             if (priceElement != null) {
@@ -61,7 +63,6 @@ class DataFetcher {
             } else {
                 System.out.println("Nie znaleziono elementu zawierającego cenę.");
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();

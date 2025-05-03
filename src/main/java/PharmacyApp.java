@@ -19,12 +19,20 @@ public class PharmacyApp {
     private static List<OrderItem> cart = new ArrayList<OrderItem>();
     private static PaymentProcessor paymentProcessor = new PaymentProcessorImpl();
     private static DatabaseManager dbManager = new DatabaseManager();
+    private static MedicBrowser medicBrowser = new MedicBrowser();
 
     public static void main(String[] args) {
 
+        medicines.add(new Medicine(1, "Paracetamol", 9.99));
+        medicines.add(new Medicine(2, "Ibuprofen", 14.99));
+       medicines.add(new Medicine(3, "Aspirin", 12.99));
+       medicines.add(new Medicine(4, "Antybiotyk", 29.99));
+        medicBrowser.insertMedicine(medicines.get(0));
+        medicBrowser.insertMedicine(medicines.get(1));
+        medicBrowser.insertMedicine(medicines.get(2));
+        medicBrowser.insertMedicine(medicines.get(3));
 
-
-
+/*  Do usunięcia przyed last review
         // Dodawanie przykładowych leków do listy.
         medicines.add(new Medicine(1, "Paracetamol", 9.99));
         medicines.add(new Medicine(2, "Ibuprofen", 14.99));
@@ -37,6 +45,8 @@ public class PharmacyApp {
         medicines.stream()
                 .filter(m -> m.getPrice() > 10) // Lambda: filtruje leki o cenie > 10 PLN
                 .forEach(System.out::println);
+*/
+
 
         // Główna pętla aplikacji
         while (true) {
@@ -53,8 +63,7 @@ public class PharmacyApp {
         System.out.println("\n=== Apteka dla NERD-a ===");
         System.out.println("1. Utwórz konto");
         System.out.println("2. Zaloguj się");
-        System.out.println("3. Pobierz dane leku z internetu");
-        System.out.println("4. Wyjdź");
+        System.out.println("3. Wyjdź");
         System.out.print("Wybierz opcję: ");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -65,9 +74,6 @@ public class PharmacyApp {
                 login();
                 break;
             case "3":
-                fetchMedicineData();
-                break;
-            case "4":
                 System.out.println("Do widzenia!");
                 System.exit(0);
                 break;
@@ -80,11 +86,12 @@ public class PharmacyApp {
     private static void showUserMenu() {
         System.out.println("\n=== Witaj " + currentUser.getUsername() + " ===");
         System.out.println("1. Przeglądaj dostępne leki");
-        System.out.println("2. Zamów leki");
-        System.out.println("3. Przejdź do płatności");
-        System.out.println("4. Wyświetl ceny produktów");
-        System.out.println("5. Kasuj swoje konto");
-        System.out.println("6. Wyloguj się");
+        System.out.println("2. Pobierz dane leku z internetu");
+        System.out.println("3. Zamów leki");
+        System.out.println("4. Przejdź do płatności");
+        System.out.println("5. Wyświetl ceny produktów");
+        System.out.println("6. Kasuj swoje konto");
+        System.out.println("7. Wyloguj się");
         System.out.print("Wybierz opcję: ");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -92,18 +99,21 @@ public class PharmacyApp {
                 browseMedicines();
                 break;
             case "2":
-                orderMedicines();
+                fetchMedicineData();
                 break;
             case "3":
-                processPayment();
+                orderMedicines();
                 break;
             case "4":
-                displayPrices();
+                processPayment();
                 break;
             case "5":
-                deleteAccount();
+                displayPrices();
                 break;
             case "6":
+                deleteAccount();
+                break;
+            case "7":
                 logout();
                 break;
             default:
