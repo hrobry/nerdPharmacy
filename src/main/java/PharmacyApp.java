@@ -12,16 +12,39 @@ import com.google.gson.*;  // Przetwarzanie JSON (biblioteka Gson)
 
 
 public class PharmacyApp {
-    private static Scanner scanner = new Scanner(System.in);
-    private static Map<String, Customer> users = new HashMap<String, Customer>(); // Przechowywanie kont w pamięci
-    private static List<Medicine> medicines = new ArrayList<Medicine>();
-    private static Customer currentUser = null;
-    private static List<OrderItem> cart = new ArrayList<OrderItem>();
-    private static PaymentProcessor paymentProcessor = new PaymentProcessorImpl();
-    private static DatabaseManager dbManager = new DatabaseManager();
-    private static MedicBrowser medicBrowser = new MedicBrowser();
+
 
     public static void main(String[] args) {
+
+
+        // Główna pętla aplikacji
+        while (true) {
+            if (Questions.currentUser == null) {
+                Questions.showMainMenu();
+            } else {
+                Questions.showUserMenu();
+            }
+        }
+
+    }
+}
+
+
+
+        /*
+
+
+
+
+private static Scanner scanner = new Scanner(System.in);
+private static Map<String, Customer> users = new HashMap<String, Customer>(); // Przechowywanie kont w pamięci
+private static List<Medicine> medicines = new ArrayList<Medicine>();
+private static Customer currentUser = null;
+private static List<OrderItem> cart = new ArrayList<OrderItem>();
+private static PaymentProcessor paymentProcessor = new PaymentProcessorImpl();
+private static DatabaseManager dbManager = new DatabaseManager();
+private static MedicBrowser medicBrowser = new MedicBrowser();
+
 
         medicines.add(new Medicine(1, "Paracetamol", 9.99));
         medicines.add(new Medicine(2, "Ibuprofen", 14.99));
@@ -32,7 +55,7 @@ public class PharmacyApp {
         medicBrowser.insertMedicine(medicines.get(2));
         medicBrowser.insertMedicine(medicines.get(3));
 
-/*  Do usunięcia przyed last review
+  Do usunięcia przyed last review
         // Dodawanie przykładowych leków do listy.
         medicines.add(new Medicine(1, "Paracetamol", 9.99));
         medicines.add(new Medicine(2, "Ibuprofen", 14.99));
@@ -45,7 +68,7 @@ public class PharmacyApp {
         medicines.stream()
                 .filter(m -> m.getPrice() > 10) // Lambda: filtruje leki o cenie > 10 PLN
                 .forEach(System.out::println);
-*/
+
 
 
         // Główna pętla aplikacji
@@ -265,3 +288,6 @@ public class PharmacyApp {
         }
     }
 }
+
+
+*/
