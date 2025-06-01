@@ -30,15 +30,18 @@ public class Questions {
 
 
 
-
-
-
-
-
         }
 
         // Menu dla niezalogowanych użytkowników
         public static void showMainMenu() {
+
+            medicines.add(new Medicine(1, "Apap", 18.00));
+            medicines.add(new Medicine(2, "Paracetamol", 7.40));
+            medicines.add(new Medicine(3, "Hemorol", 13.70));
+            medicines.add(new Medicine(4, "Flegamina", 14.80));
+            medicines.add(new Medicine(5, "Ibum", 7.50));
+
+
             System.out.println("\n=== Apteka dla NERD-a ===");
             System.out.println("1. Utwórz konto");
             System.out.println("2. Zaloguj się");
@@ -53,7 +56,7 @@ public class Questions {
                     login();
                     break;
                 case "3":
-                    System.out.println("Do widzenia!");
+                    System.out.println("Praca Kacper Kopec nr albumu 18652 / Adam Gontarczyk nr albumu 23443");
                     System.exit(0);
                     break;
                 default:
@@ -147,14 +150,8 @@ public class Questions {
 
         // Przeglądanie dostępnych leków
         private static void browseMedicines() {
-            medicines.add(new Medicine(1, "Paracetamol", 9.99));
-            medicines.add(new Medicine(2, "Ibuprofen", 14.99));
-            medicines.add(new Medicine(3, "Aspirin", 12.99));
-            medicines.add(new Medicine(4, "Antybiotyk", 29.99));
-            medicBrowser.insertMedicine(medicines.get(0));
-            medicBrowser.insertMedicine(medicines.get(1));
-            medicBrowser.insertMedicine(medicines.get(2));
-            medicBrowser.insertMedicine(medicines.get(3));
+
+
             System.out.println("\n=== Lista dostępnych leków ===");
             medicines.forEach(med -> System.out.println(med));
         }
@@ -242,14 +239,18 @@ public class Questions {
             System.out.print("Podaj nazwę leku do wyszukania: ");
             String name = scanner.nextLine();
             Medicine med = DataFetcher.fetchMedicineData(name);
+
+            /*
             if (med != null) {
                 // Serializacja obiektu Medicine do formatu JSON
                 Gson gson = new Gson();
                 String json = gson.toJson(med);
                 System.out.println("Pobrane dane (w formacie JSON): " + json);
             } else {
-                System.out.println("Nie udało się pobrać danych leku.");
+              //  System.out.println("Nie udało się pobrać danych leku.");
             }
+            */
+
         }
 
 

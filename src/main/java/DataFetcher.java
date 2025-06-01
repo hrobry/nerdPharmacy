@@ -3,7 +3,7 @@
 // Klasa DataFetcher – pobiera dane o leku z internetu i parsuje je z JSON.
 
 
-
+/*
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -32,7 +32,8 @@ public class DataFetcher {
                 throw new IllegalArgumentException("Nieobsługiwany lek: " + medicineName);
         }
         // XPath do komórki z ceną
-        String xpath = "//*[@id=\"content\"]/div[1]/table/tbody/tr[1]/td[6]";
+                         //*[@id="content"]/div[3]/table/tbody/tr[1]/td[6]/text()
+        String xpath = " //*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/";
                         //*[@id="content"]/div[1]/table/tbody/tr[1]/td[6]
         try (WebClient webClient = new WebClient()) {
             webClient.getOptions().setUseInsecureSSL(true);
@@ -70,13 +71,13 @@ public class DataFetcher {
     }
 }
 
+*/
 
 
 
 
 
 
-/*
 import java.util.*;
 import java.util.stream.*; // Dla streamów i lambd
 import java.sql.*;        // Połączenie z bazą (SQLite)
@@ -95,24 +96,25 @@ class DataFetcher {
         String url = "";
         switch (medicineName) {
             case "Apap":
-                pharmaURL= "//*[@id=\"content\"]/div[2]/table/tbody/tr[1]/td[6]/text()";
+                //*[@id="content"]/div[3]/table/tbody/tr[1]/td[6]/text()
+                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
                 url = "https://www.lekinfo24.pl/lek/Apap-migrena.html";
                 System.out.println("Apap");
                 break;
             case "Paracetamol":
-                pharmaURL= "//*[@id=\"content\"]/div[2]/table/tbody/tr[1]/td[6]/text()";
+                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
                  url ="https://www.lekinfo24.pl/lek/Paracetamol-DOZ.html";
                 break;
             case "Hemorol":
-                pharmaURL= "//*[@id=\"content\"]/div[2]/table/tbody/tr[1]/td[6]/text()";
+                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
                 url ="https://www.lekinfo24.pl/lek/Hemorol.html";
                 break;
             case "Flegamina":
-                pharmaURL= "//*[@id=\"content\"]/div[2]/table/tbody/tr[1]/td[6]/text()";
+                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
                 url ="https://www.lekinfo24.pl/lek/Flegamina-Classic.html";
                 break;
             case "IbumForte":
-                pharmaURL= "//*[@id=\"content\"]/div[2]/table/tbody/tr[1]/td[6]/text()";
+                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
                 url ="https://www.lekinfo24.pl/lek/Ibum-Express-Forte.html";
                 break;
             default:
@@ -149,5 +151,5 @@ class DataFetcher {
         return null ;
     }
 }
-*/
+
 
