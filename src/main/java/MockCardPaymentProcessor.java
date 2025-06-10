@@ -28,7 +28,7 @@ class MockCardPaymentProcessor implements OptymalizedPaymentProcessor {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        // 5) Symulacja decyzji autoryzacji (70% szans na sukces)
-        return rnd.nextDouble() < 0.7;
+        // 5) Symulacja decyzji autoryzacji (90% szans na sukces)
+        return rnd.nextDouble() < 0.9;
     }
 }

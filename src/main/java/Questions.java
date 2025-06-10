@@ -24,13 +24,14 @@ public class Questions {
 
 
 
+
     public Questions(){
 
 
 
 
 
-        }
+    }
 
         // Menu dla niezalogowanych użytkowników
         public static void showMainMenu() {
@@ -63,7 +64,6 @@ public class Questions {
                     System.out.println("Niepoprawna opcja. Spróbuj ponownie.");
             }
         }
-
         // Menu dla zalogowanych użytkowników
         public static void showUserMenu() {
             System.out.println("\n=== Witaj " + currentUser.getUsername() + " ===");
@@ -87,7 +87,9 @@ public class Questions {
                     orderMedicines();
                     break;
                 case "4":
-                    processPayment();
+
+
+                  //  processPayment();
                     break;
                 case "5":
                     displayPrices();
@@ -187,30 +189,14 @@ public class Questions {
             if (cart.isEmpty()) {
                 System.out.println("Twój koszyk jest pusty.");
                 return;
+            }   try {
+                PaymentSimulator PaymentCard = new PaymentSimulator();
+                PaymentCard.firstStepPayment();
+                PaymentCard.secondStepPayment();
+            } catch (PaymentException e) {
+                throw new RuntimeException(e);
             }
-            double total = cart.stream().mapToDouble(item -> item.getMedicine().getPrice() * item.getQuantity()).sum();
-            System.out.println("\n=== Podsumowanie zamówienia ===");
-            cart.forEach(item -> {
-                double itemTotal = item.getMedicine().getPrice() * item.getQuantity();
-                System.out.printf("%s x %d = %.2f PLN\n", item.getMedicine().getName(), item.getQuantity(), itemTotal);
-            });
-            System.out.printf("Łączna kwota: %.2f PLN\n", total);
-            System.out.print("Potwierdzasz płatność? (tak/nie): ");
-            String confirm = scanner.nextLine();
-            if (confirm.equalsIgnoreCase("tak")) {
-                try {
-                    if (paymentProcessor.processPayment(total)) {
-                        System.out.println("Płatność zakończona sukcesem!");
-                        cart.clear();
-                    } else {
-                        System.out.println("Płatność nie powiodła się.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Błąd przetwarzania płatności: " + e.getMessage());
-                }
-            } else {
-                System.out.println("Anulowano płatność.");
-            }
+
         }
 
         // Wyświetlanie cen produktów
