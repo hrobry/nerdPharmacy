@@ -71,9 +71,8 @@ public class Questions {
             System.out.println("2. Pobierz dane leku z internetu");
             System.out.println("3. Zamów leki");
             System.out.println("4. Przejdź do płatności");
-            System.out.println("5. Wyświetl ceny produktów");
-            System.out.println("6. Kasuj swoje konto");
-            System.out.println("7. Wyloguj się");
+            System.out.println("5. Kasuj swoje konto");
+            System.out.println("6. Wyloguj się");
             System.out.print("Wybierz opcję: ");
             String choice = scanner.nextLine();
             switch (choice) {
@@ -88,16 +87,12 @@ public class Questions {
                     break;
                 case "4":
 
-
-                  //  processPayment();
+                   processPayment();
                     break;
                 case "5":
-                    displayPrices();
-                    break;
-                case "6":
                     deleteAccount();
                     break;
-                case "7":
+                case "6":
                     logout();
                     break;
                 default:
@@ -155,10 +150,13 @@ public class Questions {
 
 
             System.out.println("\n=== Lista dostępnych leków ===");
-            medicines.forEach(med -> System.out.println(med));
+            medicines.forEach(med -> System.out.printf("%s: %.2f PLN\n", med.name, med.price)); //// LAMBDA !!!
         }
 
-        // Zamawianie leków – dodanie leku do koszyka
+
+
+
+    // Zamawianie leków – dodanie leku do koszyka
         private static void orderMedicines() {
             System.out.println("\n=== Zamawianie leków ===");
             browseMedicines();
@@ -199,11 +197,6 @@ public class Questions {
 
         }
 
-        // Wyświetlanie cen produktów
-        private static void displayPrices() {
-            System.out.println("\n=== Ceny produktów ===");
-            medicines.forEach(med -> System.out.printf("%s: %.2f PLN\n", med.name, med.price));
-        }
 
         // Usuwanie konta – kasowanie konta z pamięci oraz bazy danych
         private static void deleteAccount() {
