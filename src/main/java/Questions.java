@@ -22,14 +22,7 @@ public class Questions {
     private static DatabaseManager dbManager = new DatabaseManager();
     private static MedicBrowser medicBrowser = new MedicBrowser();
 
-
-
-
     public Questions(){
-
-
-
-
 
     }
 
@@ -41,7 +34,6 @@ public class Questions {
             medicines.add(new Medicine(3, "Hemorol", 13.70));
             medicines.add(new Medicine(4, "Flegamina", 14.80));
             medicines.add(new Medicine(5, "Ibum", 7.50));
-
 
             System.out.println("\n=== Apteka dla NERD-a ===");
             System.out.println("1. Utwórz konto");
@@ -86,7 +78,6 @@ public class Questions {
                     orderMedicines();
                     break;
                 case "4":
-
                    processPayment();
                     break;
                 case "5":
@@ -147,8 +138,6 @@ public class Questions {
 
         // Przeglądanie dostępnych leków
         private static void browseMedicines() {
-
-
             System.out.println("\n=== Lista dostępnych leków ===");
             medicines.forEach(med -> System.out.printf("%s: %.2f PLN\n", med.name, med.price)); //// LAMBDA !!!
         }
@@ -219,16 +208,6 @@ public class Questions {
             String name = scanner.nextLine();
             Medicine med = DataFetcher.fetchMedicineData(name);
 
-            /*
-            if (med != null) {
-                // Serializacja obiektu Medicine do formatu JSON
-                Gson gson = new Gson();
-                String json = gson.toJson(med);
-                System.out.println("Pobrane dane (w formacie JSON): " + json);
-            } else {
-              //  System.out.println("Nie udało się pobrać danych leku.");
-            }
-            */
 
         }
 

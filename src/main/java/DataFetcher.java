@@ -137,7 +137,7 @@ class DataFetcher {
             String price="";
 
             if (priceElement != null) {
-                 price= priceElement.getTextContent();
+                price= priceElement.getTextContent();
                 price = price.replaceAll("\\s", "");
                 System.out.println("Cena: " + price);
             } else {

@@ -14,9 +14,7 @@ import com.google.gson.*;  // Przetwarzanie JSON (biblioteka Gson)
 public class
 PharmacyApp {
 
-
     public static void main(String[] args) {
-
 
         // Główna pętla aplikacji
         while (true) {
