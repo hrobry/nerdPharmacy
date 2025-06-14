@@ -139,7 +139,7 @@ public class Questions {
         // Przeglądanie dostępnych leków
         private static void browseMedicines() {
             System.out.println("\n=== Lista dostępnych leków ===");
-            medicines.forEach(med -> System.out.printf("%s: %.2f PLN\n", med.name, med.price)); //// LAMBDA !!!
+            medicines.forEach(med -> System.out.printf("%d. %s: %.2f PLN\n",med.getId(), med.name, med.price)); //// LAMBDA !!!
         }
 
 
@@ -180,6 +180,8 @@ public class Questions {
                 PaymentSimulator PaymentCard = new PaymentSimulator();
                 PaymentCard.firstStepPayment();
                 PaymentCard.secondStepPayment();
+                cart.clear();
+                System.out.println("Twój koszyk jest pusty.");
             } catch (PaymentException e) {
                 throw new RuntimeException(e);
             }
