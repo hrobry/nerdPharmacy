@@ -188,6 +188,10 @@ public class Questions {
                 System.out.println(e.getMessage());
 
 
+            }   catch (NumberFormatException u) {
+                wrongPayment=true;
+                System.out.println("Zły format" );
+
             }
             if (wrongPayment==false) {
                 cart.clear();
