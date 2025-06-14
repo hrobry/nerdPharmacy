@@ -94,60 +94,69 @@ class DataFetcher {
     public static Medicine fetchMedicineData(String medicineName) {
         String pharmaURL = "";
         String url = "";
-        switch (medicineName) {
-            case "Apap":
-                //*[@id="content"]/div[3]/table/tbody/tr[1]/td[6]/text()
-                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
-                url = "https://www.lekinfo24.pl/lek/Apap-migrena.html";
-                System.out.println("Apap");
-                break;
-            case "Paracetamol":
-                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
-                 url ="https://www.lekinfo24.pl/lek/Paracetamol-DOZ.html";
-                break;
-            case "Hemorol":
-                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
-                url ="https://www.lekinfo24.pl/lek/Hemorol.html";
-                break;
-            case "Flegamina":
-                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
-                url ="https://www.lekinfo24.pl/lek/Flegamina-Classic.html";
-                break;
-            case "IbumForte":
-                pharmaURL= "//*[@id=\"content\"]/div[3]/table/tbody/tr[1]/td[6]/text()";
-                url ="https://www.lekinfo24.pl/lek/Ibum-Express-Forte.html";
-                break;
-            default:
-                throw new IllegalArgumentException("Nieobsługiwany lek: " + medicineName);
-        }
-       // paracetamol//*[@id="content"]/div[2]/table/tbody/tr[1]/td[6]
-        ////*[@id="content"]/div[2]/table/tbody/tr[1]/td[6]/text()2
-
-        try (final WebClient webClient = new WebClient()) {
-            webClient.getOptions().setUseInsecureSSL(true);
-            webClient.getOptions().setJavaScriptEnabled(false);
-            webClient.getOptions().setCssEnabled(false);
-
-
-            HtmlPage page = webClient.getPage(url);
-
-            // Rzutowanie wyniku na HtmlSpan Apap
-            DomText priceElement = (DomText) page.getFirstByXPath(pharmaURL);
-            System.out.println(priceElement);
-            String price="";
-
-            if (priceElement != null) {
-                price= priceElement.getTextContent();
-                price = price.replaceAll("\\s", "");
-                System.out.println("Cena: " + price);
-            } else {
-                System.out.println("Nie znaleziono elementu zawierającego cenę.");
+       boolean wrongMedicine = false;
+        try {
+            switch (medicineName) {
+                case "Apap":
+                    //*[@id="content"]/div[3]/table/tbody/tr[1]/td[6]/text()
+                    pharmaURL = "//*[@id=\"content\"]/div[1]/table/tbody/tr[1]/td[7]/text()";
+                    url = "https://www.lekinfo24.pl/lek/Apap-migrena.html";
+                    //*[@id="content"]/div[1]/table/tbody/tr[1]/td[7]/text()
+                    System.out.println("Apap");
+                    break;
+                case "Paracetamol":
+                    pharmaURL = "//*[@id=\"content\"]/div[1]/table/tbody/tr[1]/td[7]/text()";
+                    url = "https://www.lekinfo24.pl/lek/Paracetamol-DOZ.html";
+                    break;
+                case "Hemorol":
+                    pharmaURL = "//*[@id=\"content\"]/div[1]/table/tbody/tr[1]/td[7]/text()";
+                    url = "https://www.lekinfo24.pl/lek/Hemorol.html";
+                    break;
+                case "Flegamina":
+                    pharmaURL = "//*[@id=\"content\"]/div[1]/table/tbody/tr[1]/td[7]/text()";
+                    url = "https://www.lekinfo24.pl/lek/Flegamina-Classic.html";
+                    break;
+                case "IbumForte":
+                    pharmaURL = "//*[@id=\"content\"]/div[1]/table/tbody/tr[1]/td[7]/text()";
+                    url = "https://www.lekinfo24.pl/lek/Ibum-Express-Forte.html";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Nieobsługiwany lek: " + medicineName);
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
+        }catch(IllegalArgumentException f){
+            System.out.println(f.getMessage());
+            wrongMedicine = true;
         }
+       // paracetamol//*[@id="content"]/div[1]/table/tbody/tr[7]/td[6]text()
+        ////*[@id="content"]/div[2]/table/tbody/tr[1]/td[6]/text()2
+        //*[@id="content"]/div[1]/table/tbody/tr[1]/td[7]/text()
+if (wrongMedicine == false) {
+    try (final WebClient webClient = new WebClient()) {
+        webClient.getOptions().setUseInsecureSSL(true);
+        webClient.getOptions().setJavaScriptEnabled(false);
+        webClient.getOptions().setCssEnabled(false);
+
+
+        HtmlPage page = webClient.getPage(url);
+
+        // Rzutowanie wyniku na HtmlSpan Apap
+        DomText priceElement = (DomText) page.getFirstByXPath(pharmaURL);
+        System.out.println(priceElement);
+        String price = "";
+
+        if (priceElement != null) {
+            price = priceElement.getTextContent();
+            price = price.replaceAll("\\s", "");
+            System.out.println("Cena: " + price);
+        } else {
+            System.out.println("Nie znaleziono elementu zawierającego cenę.");
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+
+    }
+}
         return null ;
     }
 }
