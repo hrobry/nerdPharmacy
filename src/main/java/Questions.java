@@ -173,6 +173,7 @@ public class Questions {
 
         // Przetwarzanie płatności z użyciem PaymentProcessor (interfejs)
         private static void processPayment() {
+        boolean wrongPayment=false;
             if (cart.isEmpty()) {
                 System.out.println("Twój koszyk jest pusty.");
                 return;
@@ -180,10 +181,19 @@ public class Questions {
                 PaymentSimulator PaymentCard = new PaymentSimulator();
                 PaymentCard.firstStepPayment();
                 PaymentCard.secondStepPayment();
+
+
+            } catch (PaymentException e) {
+                wrongPayment=true;
+                System.out.println(e.getMessage());
+
+
+            }
+            if (wrongPayment==false) {
                 cart.clear();
                 System.out.println("Twój koszyk jest pusty.");
-            } catch (PaymentException e) {
-                throw new RuntimeException(e);
+            }else{
+                System.out.println("podaj numer jeszcze raz");
             }
 
         }

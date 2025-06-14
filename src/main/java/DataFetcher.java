@@ -127,7 +127,7 @@ class DataFetcher {
             System.out.println(f.getMessage());
             wrongMedicine = true;
         }
-       // paracetamol//*[@id="content"]/div[1]/table/tbody/tr[7]/td[6]text()
+        /// paracetamol//*[@id="content"]/div[1]/table/tbody/tr[7]/td[6]text()
         ////*[@id="content"]/div[2]/table/tbody/tr[1]/td[6]/text()2
         //*[@id="content"]/div[1]/table/tbody/tr[1]/td[7]/text()
 if (wrongMedicine == false) {

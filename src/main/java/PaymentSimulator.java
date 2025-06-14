@@ -26,7 +26,7 @@ public void firstStepPayment(){
     }
 }
 
-    public void secondStepPayment(){
+    public void secondStepPayment() throws PaymentException{
 
         System.out.print("Numer karty (16 cyfr): ");
         String number = scanner.nextLine().trim();
@@ -36,7 +36,7 @@ public void firstStepPayment(){
         String cvv = scanner.nextLine().trim();
         CardData card = new CardData(number, expiry, cvv);
         System.out.println("\nPrzetwarzam płatność... proszę czekać.");
-        try {
+
             boolean ok = processor.authorize(card, amount);
             if (ok) {
                 // Maskowanie numeru karty: pokazujemy tylko ostatnie 4 cyfry
@@ -46,9 +46,7 @@ public void firstStepPayment(){
             } else {
                 System.out.println("Płatność odrzucona przez bank.");
             }
-        } catch (PaymentException e) {
-            System.err.println("Błąd płatności: " + e.getMessage());
-        }
+
 
     }
 

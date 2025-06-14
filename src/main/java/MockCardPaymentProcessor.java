@@ -10,8 +10,8 @@ class MockCardPaymentProcessor implements OptymalizedPaymentProcessor {
 
     @Override
     public boolean authorize(CardData card, double amount) throws PaymentException {
-        // 1) Sprawdzenie formatu numeru (16 cyfr)
-        if (!card.number.matches("\\d{16}")) {
+        // 1) Sprawdzenie formatu numeru (12 cyfr)
+        if (!card.number.matches("\\d{12}")) {
             throw new PaymentException("Nieprawidłowy numer karty");
         }
         // 2) Sprawdzenie formatu daty ważności (MM/YY)
